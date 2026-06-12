@@ -1,4 +1,4 @@
-# Sistema Especialista em Prolog
+# Sistema Prolog
 
 Projeto desenvolvido em **SWI-Prolog** para estudos de Programação Lógica e Inteligência Artificial.
 

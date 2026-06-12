@@ -1,0 +1,28 @@
+# Arquivos de bytecode/compilados do SWI-Prolog
+*.qlf
+*.o
+*.so
+*.dylib
+*.dll
+*.exe
+
+# Arquivos temporários e de histórico
+*.swp
+*~
+*.log
+.history
+
+# Estado e arquivos de projeto salvos
+*.sav
+*.ilk
+*.idb
+
+# Pastas de build ou diretórios de estado (dependendo da sua IDE)
+_plcache/
+.dart_tool/
+.vscode/
+.idea/
+
+# Sistema Operacional
+.DS_Store
+Thumbs.db

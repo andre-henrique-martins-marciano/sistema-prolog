@@ -4,7 +4,7 @@ Projeto desenvolvido em **SWI-Prolog** para estudos de Programação Lógica e I
 
 ## Requisitos
 
-- SWI-Prolog 9.2 ou superior
+- SWI-Prolog  10.0.2-1  ou superior
 - Git 2.x ou superior
 
 ## Instalação do SWI-Prolog
@@ -27,7 +27,7 @@ swipl --version
 Exemplo de saída:
 
 ```text
-SWI-Prolog version 9.2.9 for x64-win64
+SWI-Prolog version  10.0.2-1  for x64-win64
 ```
 
 ## Clonando o projeto

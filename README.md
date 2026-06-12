@@ -33,8 +33,7 @@ SWI-Prolog version  10.0.2-1  for x64-win64
 ## Clonando o projeto
 
 ```bash
-git clone https://github.com/SEU-USUARIO/NOME-DO-REPOSITORIO.git
-cd NOME-DO-REPOSITORIO
+https://github.com/andre-henrique-martins-marciano/sistema-prolog.git
 ```
 
 ## Executando o projeto

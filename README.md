@@ -128,6 +128,6 @@ git pull origin main
 
 ## Autor
 
-André Henrique Martins Marciano
+
 
 Estudante da Universidade Federal de São João del-Rei (UFSJ).

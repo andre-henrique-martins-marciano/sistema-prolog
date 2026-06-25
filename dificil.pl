@@ -1,5 +1,5 @@
 % FATOS
-% Simpson
+% Informações sobre a família Simpson
 
 pai(abraham_simpson, homer_simpson).
 mae(mona_simpson, homer_simpson).
@@ -12,7 +12,7 @@ mae(marge_bouvier, bart_simpson).
 mae(marge_bouvier, lisa_simpson).
 mae(marge_bouvier, maggie_simpson).
 
-% Família Bouvier
+% Informações sobre a família Bouvier
 
 pai(clancy_bouvier, marge_bouvier).
 pai(clancy_bouvier, patty_bouvier).
@@ -22,7 +22,7 @@ mae(jacqueline_bouvier, marge_bouvier).
 mae(jacqueline_bouvier, patty_bouvier).
 mae(jacqueline_bouvier, selma_bouvier).
 
-% Descendentes
+% Filhos e descendentes
 
 pai(bart_simpson, skippy_simpson).
 pai(bart_simpson, jiff_simpson).
@@ -37,25 +37,22 @@ mae(maggie_simpson, maggie_simpson_jr).
 
 mae(selma_bouvier, ling_bouvier).
 
-% REGRAS DE DECISÃO
+% REGRAS
 
-% Filho
-
+% Verifica se X é filho(a) de Y
 filho(X,Y) :-
     pai(Y,X).
 
 filho(X,Y) :-
     mae(Y,X).
 
-% Irmãos
-
+% Verifica se X e Y são irmãos
 irmaos(X,Y) :-
     pai(P,X),
     pai(P,Y),
     X \= Y.
 
-% Avô
-
+% Verifica se X é avô de Y
 avo(X,Y) :-
     pai(X,Z),
     pai(Z,Y).
@@ -64,8 +61,7 @@ avo(X,Y) :-
     pai(X,Z),
     mae(Z,Y).
 
-% Tio
-
+% Verifica se X é tio de Y
 tio(X,Y) :-
     irmaos(X,Z),
     pai(Z,Y).
@@ -74,29 +70,29 @@ tio(X,Y) :-
     irmaos(X,Z),
     mae(Z,Y).
 
-% Primo
-
+% Verifica se X e Y são primos
 primo(X,Y) :-
     filho(X,A),
     filho(Y,B),
     irmaos(A,B),
     X \= Y.
 
-
-% INTERAÇÃO 
+% MENU DO PROGRAMA
 
 menu :-
     nl,
-    write('========= MENU ========='), nl,
-    write('1 - Verificar se Abraham e avo'), nl,
-    write('2 - Verificar se duas pessoas sao irmas'), nl,
-    write('3 - Verificar se uma pessoa e filho(a)'), nl,
-    write('4 - Verificar se uma pessoa e tio(a)'), nl,
-    write('5 - Verificar se duas pessoas sao primas'), nl,
+    write('MENU'), nl,
+    write('1 - Abraham e avo?'), nl,
+    write('2 - Sao irmas?'), nl,
+    write('3 - E filho(a)?'), nl,
+    write('4 - E tio(a)?'), nl,
+    write('5 - Sao primas?'), nl,
     write('0 - Sair'), nl,
+    write('Opcao: '),
     read(Opcao),
     executar(Opcao).
 
+% verifica se Abraham é avô
 executar(1) :-
     write('Nome do neto: '),
     read(Pessoa),
@@ -108,6 +104,7 @@ executar(1) :-
     ),
     menu.
 
+% verifica se duas pessoas são irmãs
 executar(2) :-
     write('Primeira pessoa: '),
     read(X),
@@ -120,6 +117,7 @@ executar(2) :-
     ),
     menu.
 
+% verifica relação de filho(a)
 executar(3) :-
     write('Filho(a): '),
     read(X),
@@ -132,18 +130,20 @@ executar(3) :-
     ),
     menu.
 
+% verifica relação de tio(a)
 executar(4) :-
     write('Possivel tio(a): '),
     read(X),
     write('Sobrinho(a): '),
     read(Y),
     (tio(X,Y) ->
-        write('SIM, e tio(a).' ), nl
+        write('SIM, e tio(a).'), nl
     ;
-        write('NAO e tio(a).' ), nl
+        write('NAO e tio(a).'), nl
     ),
     menu.
 
+% verifica se duas pessoas são primas
 executar(5) :-
     write('Primeira pessoa: '),
     read(X),
@@ -156,9 +156,12 @@ executar(5) :-
     ),
     menu.
 
+% sair do programa
 executar(0) :-
     write('Programa encerrado.'), nl.
 
+% Trata opções inválidas
 executar(_) :-
     write('Opcao invalida!'), nl,
     menu.
+

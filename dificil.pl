@@ -1,4 +1,4 @@
-% Pai
+
 pai(abraham_simpson, homer_simpson).
 
 pai(clancy_bouvier, marge_bouvier).
@@ -141,7 +141,6 @@ executar(5) :-
 executar(0) :-
     write('Programa encerrado.'), nl.
 
-% Trata opções inválidas
 executar(_) :-
     write('Opcao invalida!'), nl,
     menu.

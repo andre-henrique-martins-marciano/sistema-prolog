@@ -1,6 +1,7 @@
-/* O nível 2 do trabalho tem como tema, as relações familiares de Star Wars.
-Nos fatos, apenas relações de pai e mãe(adotivo ou biológico) foram apresentados e 
-os gêmeos para caso de curiosidade. */
+% O nível 2 do trabalho tem como tema as relações familiares de Star Wars.
+% Nos fatos, apenas relações de pai e mãe(adotivo ou biológico) foram apresentados e 
+% os gêmeos para caso de curiosidade.
+
 % Fatos: 
 
 mae(princesa_leia_organa,jaina_solo).
@@ -33,26 +34,26 @@ gemeos(jaina_solo,jacen_solo).
 
 %regras
 
+% Determina "filho" como adotivo ou biológico, não havendo diferencação,
+% pois todas as regras seguintes de parentesco mais direto independem de genética.
 filho(X,Y):-
     (mae(Y,X);pai(Y,X));
     (mae_adotiva(Y,X);pai_adotivo(Y,X)).
 
-/* Determina "filho" como adotivo ou biológico, não havendo diferencação,
-pois todas as regras seguintes de parentesco mais direto independem de genética. */
 
 avo(X,Y):-
     filho(Y,Z),
     filho(Z,X).
 
+% A regra "conjuge" foi estruturada de modo que impeça que um pai ou mãe adotivo
+% seja vinculado à um biológico, apenas por convenção do universo.
+% Ou seja, em Star Wars não existem casais compostos dessa forma.
 conjuge(X,Y):-
     ((pai(X,Z),mae(Y,Z));
     (mae(X,Z),pai(Y,Z)));
     ((pai_adotivo(X,Z),mae_adotiva(Y,Z));
     (pai_adotivo(Y,Z),mae_adotiva(X,Z))).
 
-/* A regra "conjuge" foi estruturada de modo que impeça que um pai ou mãe adotivo
-seja vinculado à um biológico, apenas por convenção do universo. Ou seja, em Star Wars
-não existem casais compostos dessa forma. */
 
 neto(X,Y):-
     filho(Z,Y),
@@ -82,33 +83,35 @@ sobrinho(X,Y):-
     filho(X,Z),
     irmao(Z,Y).
 
+% Determina se um elemento X do universo é descendente de um elemento Y,
+% desconsiderando se existe ou não vinculo genético. 
 descendente(X,Y):-
     filho(X,Y).
 descendente(X,Y):-
     filho(X,Z),
     descendente(Z,Y).
 
-/* Determina se um elemento X do universo é descendente de um elemento Y,
-desconsiderando se existe ou não vinculo genético. */
 
+% Determina se um elemento X do universo é descendente_natural de um elemento Y,
+% sendo válido apenas para relações sanguíneas, e por isso usa os fatos: pai e mãe. 
 descendente_natural(X,Y):-
     (mae(Y,X);pai(Y,X)).
 descendente_natural(X,Y):-
     (pai(Z,X);mae(Z,X)),
     descendente_natural(Z,Y).
 
-/* Determina se um elemento X do universo é descendente_natural de um elemento Y,
-sendo váldo apenas para relações sanguíneas, e por isso usa os fatos: pai e mãe. */
-
+% Determina, primeiro, se um elemento X do universo é descendente de um elemneto Y,
+% após, elimina todos que têm relações apenas formadas por descendência de sangue.
+% Dessa forma, engloba somente as linhagens (nos intevalos determinados pelas variáveis)
+% que tem, pelo menos, uma relação adotiva. 
 descendente_civil(X,Y):-
     descendente(X,Y),
     \+descendente_natural(X,Y).
 
-/* Determina, primeiro, se um elemento X do universo é descendente de um elemneto Y,
-após, elimina todos que têm relações apenas formadas por descendência de sangue. Dessa
-forma, engloba somente as linhagens (nos intevalos determinados pelas variáveis) que tem,
-pelo menos, uma relação adotiva. */
 
+% geracoes(descendente, ancestral, distância do descendente para o ancestral na árvore)*
+% Pode exibir mais de uma ramificação da árvore genealógica, visto que considera
+% tanto as relações biológicas, quanto as adotivas. 
 geracoes(X,Y,1):-
     filho(X,Y).
 geracoes(X,Y,N):-
@@ -116,6 +119,3 @@ geracoes(X,Y,N):-
     geracoes(Z,Y,N1),
     N is N1 + 1.
 
-/*geracoes(descendente, ancestral, distância do descendente para o ancestral na árvore)*
-Pode exibir mais de uma ramificação da árvore genealógica, visto que considera
-tanto as relações biológicas, quanto as adotivas. */

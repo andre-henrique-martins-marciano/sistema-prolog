@@ -40,49 +40,6 @@ filho(X,Y):-
     (mae(Y,X);pai(Y,X));
     (mae_adotiva(Y,X);pai_adotivo(Y,X)).
 
-
-avo(X,Y):-
-    filho(Y,Z),
-    filho(Z,X).
-
-% A regra "conjuge" foi estruturada de modo que impeça que um pai ou mãe adotivo
-% seja vinculado à um biológico, apenas por convenção do universo.
-% Ou seja, em Star Wars não existem casais compostos dessa forma.
-conjuge(X,Y):-
-    ((pai(X,Z),mae(Y,Z));
-    (mae(X,Z),pai(Y,Z)));
-    ((pai_adotivo(X,Z),mae_adotiva(Y,Z));
-    (pai_adotivo(Y,Z),mae_adotiva(X,Z))).
-
-
-neto(X,Y):-
-    filho(Z,Y),
-    filho(X,Z).
-
-irmao(X,Y):-
-    (X\=Y),
-    (filho(X,Z),filho(Y,Z)).
-
-tio(X,Y):-
-    filho(Y,Z),
-    irmao(Z,X).
-
-cunhado(X,Y):-
-    (conjuge(X,Z),
-    irmao(Z,Y));
-    (conjuge(Y,Z),
-    irmao(Z,X)).
-
-primo(X,Y):-
-    filho(X,Z),
-    filho(Y,W),
-    irmao(Z,W),
-    (X\=Y).
-
-sobrinho(X,Y):-
-    filho(X,Z),
-    irmao(Z,Y).
-
 % Determina se um elemento X do universo é descendente de um elemento Y,
 % desconsiderando se existe ou não vinculo genético. 
 descendente(X,Y):-

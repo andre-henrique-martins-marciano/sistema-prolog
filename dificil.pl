@@ -1,6 +1,3 @@
-% FATOS
-% Informações sobre a família Simpson
-
 % Pai
 pai(abraham_simpson, homer_simpson).
 
@@ -18,7 +15,6 @@ pai(bart_simpson, jiff_simpson).
 pai(milhouse_van_houten, zia_simpson).
 
 
-% Mãe
 mae(mona_simpson, homer_simpson).
 mae(marge_bouvier, bart_simpson).
 mae(marge_bouvier, lisa_simpson).
@@ -37,22 +33,18 @@ mae(maggie_simpson, maggie_simpson_jr).
 
 mae(selma_bouvier, ling_bouvier).
 
-% REGRAS
-
-% Verifica se X é filho(a) de Y
 filho(X,Y) :-
     pai(Y,X).
 
 filho(X,Y) :-
     mae(Y,X).
 
-% Verifica se X e Y são irmãos
+
 irmaos(X,Y) :-
     pai(P,X),
     pai(P,Y),
     X \= Y.
 
-% Verifica se X é avô de Y
 avo(X,Y) :-
     pai(X,Z),
     pai(Z,Y).
@@ -61,7 +53,6 @@ avo(X,Y) :-
     pai(X,Z),
     mae(Z,Y).
 
-% Verifica se X é tio de Y
 tio(X,Y) :-
     irmaos(X,Z),
     pai(Z,Y).
@@ -70,16 +61,12 @@ tio(X,Y) :-
     irmaos(X,Z),
     mae(Z,Y).
 
-% Verifica se X e Y são primos
 primo(X,Y) :-
     filho(X,A),
     filho(Y,B),
     irmaos(A,B),
     X \= Y.
 
-% MENU DO PROGRAMA
-
-menu :-
     nl,
     write('MENU'), nl,
     write('1 - Abraham e avo?'), nl,
@@ -92,7 +79,6 @@ menu :-
     read(Opcao),
     executar(Opcao).
 
-% verifica se Abraham é avô
 executar(1) :-
     write('Nome do neto: '),
     read(Pessoa),
@@ -104,7 +90,6 @@ executar(1) :-
     ),
     menu.
 
-% verifica se duas pessoas são irmãs
 executar(2) :-
     write('Primeira pessoa: '),
     read(X),
@@ -117,7 +102,6 @@ executar(2) :-
     ),
     menu.
 
-% verifica relação de filho(a)
 executar(3) :-
     write('Filho(a): '),
     read(X),
@@ -130,7 +114,6 @@ executar(3) :-
     ),
     menu.
 
-% verifica relação de tio(a)
 executar(4) :-
     write('Possivel tio(a): '),
     read(X),
@@ -143,7 +126,6 @@ executar(4) :-
     ),
     menu.
 
-% verifica se duas pessoas são primas
 executar(5) :-
     write('Primeira pessoa: '),
     read(X),
@@ -155,8 +137,7 @@ executar(5) :-
         write('NAO sao primos.'), nl
     ),
     menu.
-
-% sair do programa
+    
 executar(0) :-
     write('Programa encerrado.'), nl.
 

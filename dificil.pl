@@ -1,36 +1,36 @@
 % FATOS
 % Informações sobre a família Simpson
 
+% Pai
 pai(abraham_simpson, homer_simpson).
-mae(mona_simpson, homer_simpson).
-
-pai(homer_simpson, bart_simpson).
-pai(homer_simpson, lisa_simpson).
-pai(homer_simpson, maggie_simpson).
-
-mae(marge_bouvier, bart_simpson).
-mae(marge_bouvier, lisa_simpson).
-mae(marge_bouvier, maggie_simpson).
-
-% Informações sobre a família Bouvier
 
 pai(clancy_bouvier, marge_bouvier).
 pai(clancy_bouvier, patty_bouvier).
 pai(clancy_bouvier, selma_bouvier).
 
-mae(jacqueline_bouvier, marge_bouvier).
-mae(jacqueline_bouvier, patty_bouvier).
-mae(jacqueline_bouvier, selma_bouvier).
-
-% Filhos e descendentes
+pai(homer_simpson, bart_simpson).
+pai(homer_simpson, lisa_simpson).
+pai(homer_simpson, maggie_simpson).
 
 pai(bart_simpson, skippy_simpson).
 pai(bart_simpson, jiff_simpson).
 
+pai(milhouse_van_houten, zia_simpson).
+
+
+% Mãe
+mae(mona_simpson, homer_simpson).
+mae(marge_bouvier, bart_simpson).
+mae(marge_bouvier, lisa_simpson).
+mae(marge_bouvier, maggie_simpson).
+
+mae(jacqueline_bouvier, marge_bouvier).
+mae(jacqueline_bouvier, patty_bouvier).
+mae(jacqueline_bouvier, selma_bouvier).
+
 mae(jenda, skippy_simpson).
 mae(jenda, jiff_simpson).
 
-pai(milhouse_van_houten, zia_simpson).
 mae(lisa_simpson, zia_simpson).
 
 mae(maggie_simpson, maggie_simpson_jr).

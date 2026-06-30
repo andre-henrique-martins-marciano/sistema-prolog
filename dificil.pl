@@ -1,4 +1,3 @@
-
 pai(abraham_simpson, homer_simpson).
 
 pai(clancy_bouvier, marge_bouvier).
@@ -14,8 +13,8 @@ pai(bart_simpson, jiff_simpson).
 
 pai(milhouse_van_houten, zia_simpson).
 
-
 mae(mona_simpson, homer_simpson).
+
 mae(marge_bouvier, bart_simpson).
 mae(marge_bouvier, lisa_simpson).
 mae(marge_bouvier, maggie_simpson).
@@ -39,10 +38,14 @@ filho(X,Y) :-
 filho(X,Y) :-
     mae(Y,X).
 
-
 irmaos(X,Y) :-
     pai(P,X),
     pai(P,Y),
+    X \= Y.
+
+irmaos(X,Y) :-
+    mae(M,X),
+    mae(M,Y),
     X \= Y.
 
 avo(X,Y) :-
@@ -53,43 +56,50 @@ avo(X,Y) :-
     pai(X,Z),
     mae(Z,Y).
 
-tio(X,Y) :-
-    irmaos(X,Z),
+avo(X,Y) :-
+    mae(X,Z),
     pai(Z,Y).
 
-tio(X,Y) :-
-    irmaos(X,Z),
+avo(X,Y) :-
+    mae(X,Z),
     mae(Z,Y).
+
+tio(X,Y) :-
+    pai(P,Y),
+    irmaos(X,P).
+
+tio(X,Y) :-
+    mae(M,Y),
+    irmaos(X,M).
 
 primo(X,Y) :-
     filho(X,A),
     filho(Y,B),
     irmaos(A,B),
     X \= Y.
-
+menu :-
     nl,
-    write('MENU'), nl,
-    write('1 - Abraham e avo?'), nl,
-    write('2 - Sao irmas?'), nl,
-    write('3 - E filho(a)?'), nl,
-    write('4 - E tio(a)?'), nl,
-    write('5 - Sao primas?'), nl,
+    write('========= MENU ========='), nl,
+    write('1 - Verificar avo'), nl,
+    write('2 - Verificar irmaos'), nl,
+    write('3 - Verificar filho(a)'), nl,
+    write('4 - Verificar tio(a)'), nl,
+    write('5 - Verificar primos'), nl,
     write('0 - Sair'), nl,
     write('Opcao: '),
     read(Opcao),
     executar(Opcao).
-
 executar(1) :-
-    write('Nome do neto: '),
-    read(Pessoa),
-    (avo(abraham_simpson, Pessoa) ->
-        write('SIM, Abraham Simpson e avo de '),
-        write(Pessoa), nl
+    write('Possivel avo: '),
+    read(Avo),
+    write('Possivel neto: '),
+    read(Neto),
+    (avo(Avo, Neto) ->
+        write('SIM, e avo(a).'), nl
     ;
-        write('NAO, Abraham Simpson nao e avo dessa pessoa.'), nl
+        write('NAO e avo(a).'), nl
     ),
     menu.
-
 executar(2) :-
     write('Primeira pessoa: '),
     read(X),
@@ -101,7 +111,6 @@ executar(2) :-
         write('NAO sao irmaos.'), nl
     ),
     menu.
-
 executar(3) :-
     write('Filho(a): '),
     read(X),
@@ -113,7 +122,6 @@ executar(3) :-
         write('NAO existe relacao de filiacao.'), nl
     ),
     menu.
-
 executar(4) :-
     write('Possivel tio(a): '),
     read(X),
@@ -125,7 +133,6 @@ executar(4) :-
         write('NAO e tio(a).'), nl
     ),
     menu.
-
 executar(5) :-
     write('Primeira pessoa: '),
     read(X),
@@ -137,11 +144,9 @@ executar(5) :-
         write('NAO sao primos.'), nl
     ),
     menu.
-    
 executar(0) :-
     write('Programa encerrado.'), nl.
 
 executar(_) :-
     write('Opcao invalida!'), nl,
     menu.
-
